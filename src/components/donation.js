@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react'
 import { css } from 'emotion'
 import Modal from 'react-modal'
 import { TextField } from '@material-ui/core'
-import CloseIcon from '@material-ui/icons/Close';
+import CloseIcon from '@material-ui/icons/Close'
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 
 import patron from '../images/become_a_patron_button@2x.png'
-import { borderColor } from '@material-ui/system';
+import { borderColor } from '@material-ui/system'
 
 const animationStyle = css`
   position: relative;
@@ -17,7 +17,7 @@ const containerStyle = css`
   justify-content: center;
   align-items: center;
 
-  background-color: #00B49C;
+  background-color: #00b49c;
   color: #fff;
 
   @media (max-width: 600px) {
@@ -57,13 +57,13 @@ const paypalStyle = css`
   justify-content: center;
 `
 const inputStyle = css`
-  margin: .5rem 0;
+  margin: 0.5rem 0;
   display: flex;
   justify-content: center;
 `
 const donateStyle = css`
   width: 10.832rem;
-  padding: .6rem;
+  padding: 0.6rem;
   text-align: center;
 
   background-color: #2f4858;
@@ -76,7 +76,7 @@ const orContainerStyle = css`
 const orStyle = css`
   width: 12rem;
   text-align: center;
-  padding: .5rem 0;
+  padding: 0.5rem 0;
 `
 const patreonStyle = css`
   display: flex;
@@ -84,7 +84,7 @@ const patreonStyle = css`
 `
 const dollarSignStyle = css`
   padding-top: 1.28rem;
-  padding-right: .2rem;
+  padding-right: 0.2rem;
 `
 const closeIcon = css`
   color: #fff;
@@ -116,12 +116,12 @@ const theme = createMuiTheme({
   overrides: {
     MuiInputLabel: {
       root: {
-        color: "#fff"
+        color: '#fff'
       }
     },
     MuiInput: {
       input: {
-        color: '#fff',
+        color: '#fff'
       },
       underline: {
         borderBottom: '1px solid #fff',
@@ -140,7 +140,7 @@ const Donation = ({ closeDonation }) => {
 
   const validateDonation = e => {
     const newValue = e.target.value
-    const lastChar = newValue.charAt((newValue.length - 1) || 0)
+    const lastChar = newValue.charAt(newValue.length - 1 || 0)
     const lastCharNum = +lastChar
     !isNaN(lastCharNum) && setValue(newValue)
   }
@@ -152,11 +152,13 @@ const Donation = ({ closeDonation }) => {
     const buttons = window.paypal.Buttons({
       createOrder: (data, actions) => {
         return actions.order.create({
-          purchase_units: [{
-            amount: {
-              value: `${value}.00`
+          purchase_units: [
+            {
+              amount: {
+                value: `${value}.00`
+              }
             }
-          }]
+          ]
         })
       },
       onApprove: (data, actions) => {
@@ -170,24 +172,29 @@ const Donation = ({ closeDonation }) => {
 
   return (
     <div className={animationStyle}>
-      <CloseIcon className={closeIcon} onClick={() => {
-        // setClose(true)
-        // wait for animation
-        // setTimeout(closeDonation, 2000)
-        closeDonation()
-      }} />
+      <CloseIcon
+        className={closeIcon}
+        onClick={() => {
+          // setClose(true)
+          // wait for animation
+          // setTimeout(closeDonation, 2000)
+          closeDonation()
+        }}
+      />
       <Modal
         isOpen={modalOpen}
         onRequestClose={() => setModalOpen(false)}
         contentLabel="Contact Us"
         style={customStyles}
       >
-        <div id='paypal-button-container'></div>
+        <div id="paypal-button-container"></div>
       </Modal>
       <div className={containerStyle}>
         <div className={textContainerStyle}>
           <div className={titleStyle}>Help us keep the lights on!</div>
-          <div className={textStyle}>If you like what we do please help us continue to do it!</div>
+          <div className={textStyle}>
+            If you like what we do please help us continue to do it!
+          </div>
         </div>
         <div className={buttonContainerStyle}>
           <div className={paypalStyle}>
@@ -202,7 +209,9 @@ const Donation = ({ closeDonation }) => {
               </MuiThemeProvider>
             </div>
             <div className={orContainerStyle}>
-              <div className={donateStyle} onClick={open}>Donate</div>
+              <div className={donateStyle} onClick={open}>
+                Donate
+              </div>
             </div>
           </div>
           <div className={orContainerStyle}>
@@ -210,7 +219,11 @@ const Donation = ({ closeDonation }) => {
           </div>
           <div className={patreonStyle}>
             <a href="https://www.patreon.com/bePatron?u=27987489">
-              <img src={patron} alt='Become a patron' style={{ width: '12rem' }} />
+              <img
+                src={patron}
+                alt="Become a patron"
+                style={{ width: '12rem' }}
+              />
             </a>
           </div>
         </div>
