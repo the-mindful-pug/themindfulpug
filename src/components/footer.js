@@ -34,7 +34,7 @@ const Footer = ({ content = {} }) => {
   return (
     <div className={footerContainer}>
       <div className={footerIconContainer}>
-        <img src={logoImg} className={footerIcon} alt='Balance' />
+        <img src={logoImg} className={footerIcon} alt="Balance" />
         <div className={footerAppName}>Balance</div>
       </div>
       <div className={footerCopyright}>{copyright}</div>
