@@ -5,10 +5,9 @@ import {
   Switch,
   Route
 } from 'react-router-dom'
-import Cookies from 'js-cookie'
 
+import TheMindfulPug from './components/themindfulpug/TheMindfulPug'
 import Section from './components/section'
-import Donation from './components/donation'
 import ContactComponent, {
   contactStyleOverride
 } from './components/sections/contact'
@@ -84,34 +83,23 @@ const App = () => {
   }
   const isMobile = mobilecheck()
 
-  const [showDonation, setShowDonation] = useState(true)
-  const closeDonation = () => {
-    Cookies.set('donation-suppression', 'true', { expires: 7 })
-    setShowDonation(false)
-  }
-
-  useEffect(() => {
-    const shouldShow = !Cookies.get('donation-suppression')
-    setShowDonation(shouldShow)
-  }, [])
-
   return (
     <Router>
       <div className={container}>
         <Switch>
-          <Route path='/support'>
-              <Section
-                background="#F9F9F9"
-                content={{
-                  title: 'Need help?',
-                  subTitle: 'If you have any questions please contact us.'
-                }}
-                component={<ContactComponent />}
-                styleOverride={contactStyleOverride}
-              />
-              <div style={{ width: '100%', position: 'absolute', bottom: 0 }}>
-                <Footer content={footer} />
-              </div>
+          <Route exact path='/support'>
+            <Section
+              background="#F9F9F9"
+              content={{
+                title: 'Need help?',
+                subTitle: 'If you have any questions please contact us.'
+              }}
+              component={<ContactComponent />}
+              styleOverride={contactStyleOverride}
+            />
+            <div style={{ width: '100%', position: 'absolute', bottom: 0 }}>
+              <Footer content={footer} />
+            </div>
           </Route>
           <Route exact path='/privacy'>
             <Section content={{
@@ -122,31 +110,33 @@ const App = () => {
               <Footer content={footer} />
             </div>
           </Route>
+          <Route exact path='/balance'>
+            <Section
+              background="linear-gradient(180deg, rgba(255, 255, 255, 0.4) 0%, rgba(193, 249, 241, 0.4) 70.7%, rgba(171, 248, 236, 0.4) 100%)"
+              override={<HeaderComponent content={header} isMobile={isMobile} />}
+            />
+            <Section content={about} component={<AboutComponent />} />
+            <Section
+              background="#F9F9F9"
+              component={<FeatureComponent isMobile={isMobile} />}
+              content={features}
+            />
+            <Section content={future} component={<FutureComponent />} />
+            <Section
+              background="#00B49C"
+              override={<ActionComponent content={action} />}
+              styleOverride={actionStyleOverride}
+            />
+            <Section
+              background="#F9F9F9"
+              content={contact}
+              component={<ContactComponent />}
+              styleOverride={contactStyleOverride}
+            />
+            <Footer content={footer} />
+          </Route>
           <Route exact path='/'>
-              {showDonation && <Donation closeDonation={closeDonation} />}
-              <Section
-                background="linear-gradient(180deg, rgba(255, 255, 255, 0.4) 0%, rgba(193, 249, 241, 0.4) 70.7%, rgba(171, 248, 236, 0.4) 100%)"
-                override={<HeaderComponent content={header} isMobile={isMobile} />}
-              />
-              <Section content={about} component={<AboutComponent />} />
-              <Section
-                background="#F9F9F9"
-                component={<FeatureComponent isMobile={isMobile} />}
-                content={features}
-              />
-              <Section content={future} component={<FutureComponent />} />
-              <Section
-                background="#00B49C"
-                override={<ActionComponent content={action} />}
-                styleOverride={actionStyleOverride}
-              />
-              <Section
-                background="#F9F9F9"
-                content={contact}
-                component={<ContactComponent />}
-                styleOverride={contactStyleOverride}
-              />
-              <Footer content={footer} />
+            <TheMindfulPug />
           </Route>
         </Switch>
       </div>
