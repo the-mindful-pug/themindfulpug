@@ -27,7 +27,7 @@
     "test": "react-scripts test --watchAll=false --passWithNoTests=true",
     "test:dev": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "yarn build && gcloud app deploy"
+    "deploy": "yarn build && gcloud app deploy --project=themindfulpug"
   },
   "eslintConfig": {
     "extends": "react-app"

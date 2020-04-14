@@ -136,7 +136,7 @@ const App = () => {
             <Footer content={footer} />
           </Route>
           <Route exact path='/'>
-            <TheMindfulPug />
+            <TheMindfulPug isMobile={isMobile} />
           </Route>
         </Switch>
       </div>
