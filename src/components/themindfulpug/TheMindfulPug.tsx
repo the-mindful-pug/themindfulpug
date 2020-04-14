@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
-import { css } from 'emotion'
+import { css, keyframes } from 'emotion'
 
 import logoImage from '../../images/themindfulpug/tmp_logo.png'
 import heroImage from '../../images/themindfulpug/tmp_header.png'
 import aboutImage from '../../images/themindfulpug/tmp_about.png'
 import contactImage from '../../images/themindfulpug/tmp_contact.png'
 import contactMobileImage from '../../images/themindfulpug/tmp_contact_mobile.png'
+import hamburgerButtonImage from '../../images/themindfulpug/hamburger.png'
 
 type Props = {
   isMobile: boolean
@@ -31,6 +32,11 @@ const container = css`
     color: #2f4858;
     outline: none;
     text-decoration: none;
+
+    @media only screen and (max-width: 768px) {
+      text-align: center;
+      margin-bottom: .5rem;
+    }
   }
 `
 const header = css`
@@ -88,6 +94,7 @@ const footer = css`
 
   @media only screen and (max-width: 768px) {
     flex-direction: column;
+    padding: 1rem;
   }
 `
 const headerLogo = css`
@@ -218,11 +225,48 @@ const input = css`
     width: 100%;
   }
 `
+const menuButton = css`
+  width: 2rem;
+  padding: 1rem;
+`
+const grow = keyframes`
+  from {
+    height: 0;
+  }
+  to {
+    height: 140px;
+  }
+`
+const shrink = keyframes`
+  from {
+    height: 140px;
+  }
+  to {
+    height: 0;
+  }
+`
+const menu = css`
+  position: absolute;
+  right: 0;
+  padding: 1rem;
+  z-index: 1000;
+  background-color: #fff;
+  border: 1px solid #2f4858;
+  border-radius 3px;
+  margin-right: 1rem;
+  display: flex;
+  flex-direction: column;
+  width: 165px;
+  animation: ${grow} 1s;
+  animation-fill-mode: forwards;
+`
 
 const TheMindfulPug = ({ isMobile }: Props) => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState('')
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [animating, setAnimating] = useState(false)
   const [errors, setErrors] = useState([false, false, false])
   const [loading, setLoading] = useState(false)
 
@@ -265,12 +309,34 @@ const TheMindfulPug = ({ isMobile }: Props) => {
             <img className={headerImageStyle} src={logoImage} alt="" />
           </div>
           {isMobile ? (
-            <div />
+            <div onClick={() => {
+              setMenuOpen(!menuOpen)
+              setAnimating(true)
+              setTimeout(() => setAnimating(false), 1000)
+            }}>
+              <img className={menuButton} src={hamburgerButtonImage} alt="" />
+              {menuOpen && (
+                <div className={menu}>
+                  { !animating && (
+                    <>
+                      <a href="#about" onClick={() => setMenuOpen(false)}>About</a>
+                      <a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a>
+                      <a href="mailto:josh@themindfulpug.com" onClick={() => setMenuOpen(false)}>Careers</a>
+                      <div className={button}>
+                        <a href="/balance" style={{ color: '#fff', marginBottom: 0 }} onClick={() => setMenuOpen(false)}>
+                          Products
+                        </a>
+                      </div>
+                    </>
+                  )}
+                </div>
+              )}
+            </div>
           ) : (
             <div className={navigation}>
               <a href="#about">About</a>
               <a href="#contact">Contact</a>
-              <a href="/careers">Careers</a>
+              <a href="mailto:josh@themindfulpug.com">Careers</a>
               <div className={button}>
                 <a href="/balance" style={{ color: '#fff' }}>
                   Products
@@ -287,7 +353,10 @@ const TheMindfulPug = ({ isMobile }: Props) => {
         <a id="about"></a>
         <div className={about}>
           {isMobile && (
-            <p className={sectionTitle} style={{ marginBottom: '3rem', textAlign: 'center' }}>
+            <p
+              className={sectionTitle}
+              style={{ marginBottom: '3rem', textAlign: 'center' }}
+            >
               About
             </p>
           )}
@@ -328,11 +397,19 @@ const TheMindfulPug = ({ isMobile }: Props) => {
         </div>
         <a id="contact"></a>
         <div className={contact}>
-          {!isMobile && <img className={contactImageStyle} src={contactImage} alt="" />}
+          {!isMobile && (
+            <img className={contactImageStyle} src={contactImage} alt="" />
+          )}
           <p className={sectionTitle} style={{ textAlign: 'center' }}>
             Contact Us
           </p>
-          {isMobile && <img className={contactImageStyleMobile} src={contactMobileImage} alt="" />}
+          {isMobile && (
+            <img
+              className={contactImageStyleMobile}
+              src={contactMobileImage}
+              alt=""
+            />
+          )}
           <div className={form}>
             <input
               className={input}
@@ -369,7 +446,9 @@ const TheMindfulPug = ({ isMobile }: Props) => {
         </div>
         <div className={footer}>
           <img width="200px" src={logoImage} alt="" />
-          <p style={{ textAlign: 'center' }}>©2019 The Mindful Pug LLC. All rights reserved.</p>
+          <p style={{ textAlign: 'center' }}>
+            ©2019 The Mindful Pug LLC. All rights reserved.
+          </p>
         </div>
       </div>
     </div>
