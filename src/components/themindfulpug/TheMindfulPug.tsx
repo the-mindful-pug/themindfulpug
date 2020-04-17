@@ -385,10 +385,29 @@ const TheMindfulPug = ({ isMobile }: Props) => {
               </p>
             )}
             <p className={aboutText}>
-            The Mindful Pug is a company that provides tools to enhance and facilitate the recovery of those with addictions and mental health disorders. As of 2016, there were more than 46 million people in the United States who suffer from mental illness and/or addictions. Of those 46 million only a fraction receive treatment. Although mental health is becoming more widely accepted as a subject of conversation, it is still hard for those who struggle to find the help they need. With the tools provided by The Mindful Pug, clinicians can be better connected to their clients and clients will have access to resources that will help them deal with their disorder(s).
+              The Mindful Pug is a company that provides tools to enhance and
+              facilitate the recovery of those with addictions and mental health
+              disorders. As of 2016, there were more than 46 million people in
+              the United States who suffer from mental illness and/or
+              addictions. Of those 46 million only a fraction receive treatment.
+              Although mental health is becoming more widely accepted as a
+              subject of conversation, it is still hard for those who struggle
+              to find the help they need. With the tools provided by The Mindful
+              Pug, clinicians can be better connected to their clients and
+              clients will have access to resources that will help them deal
+              with their disorder(s).
             </p>
             <p className={aboutText} style={{ marginTop: '10px' }}>
-            The Mindful Pug was founded by Josh Greenwell following his initial steps in recovery for alcohol abuse. When he was first seeking help for his addiction, he found it difficult to access the help he needed; consequently, the search for peace continued for almost a year. While in treatment Josh was inspired to create resources that would help him in his recovery journey. Realizing the value of his discoveries, he shared those with others who struggled as he had. Thus, The Mindful Pug was born. Since then he has been driven to offer new solutions to the continually growing needs in our mental health and addiction recovery programs.
+              The Mindful Pug was founded by Josh Greenwell following his
+              initial steps in recovery for alcohol abuse. When he was first
+              seeking help for his addiction, he found it difficult to access
+              the help he needed; consequently, the search for peace continued
+              for almost a year. While in treatment Josh was inspired to create
+              resources that would help him in his recovery journey. Realizing
+              the value of his discoveries, he shared those with others who
+              struggled as he had. Thus, The Mindful Pug was born. Since then he
+              has been driven to offer new solutions to the continually growing
+              needs in our mental health and addiction recovery programs.
             </p>
           </div>
         </div>
