@@ -35,7 +35,7 @@ const container = css`
 
     @media only screen and (max-width: 768px) {
       text-align: center;
-      margin-bottom: .5rem;
+      margin-bottom: 0.5rem;
     }
   }
 `
@@ -309,21 +309,36 @@ const TheMindfulPug = ({ isMobile }: Props) => {
             <img className={headerImageStyle} src={logoImage} alt="" />
           </div>
           {isMobile ? (
-            <div onClick={() => {
-              setMenuOpen(!menuOpen)
-              setAnimating(true)
-              setTimeout(() => setAnimating(false), 1000)
-            }}>
+            <div
+              onClick={() => {
+                setMenuOpen(!menuOpen)
+                setAnimating(true)
+                setTimeout(() => setAnimating(false), 1000)
+              }}
+            >
               <img className={menuButton} src={hamburgerButtonImage} alt="" />
               {menuOpen && (
                 <div className={menu}>
-                  { !animating && (
+                  {!animating && (
                     <>
-                      <a href="#about" onClick={() => setMenuOpen(false)}>About</a>
-                      <a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a>
-                      <a href="mailto:josh@themindfulpug.com" onClick={() => setMenuOpen(false)}>Careers</a>
+                      <a href="#about" onClick={() => setMenuOpen(false)}>
+                        About
+                      </a>
+                      <a href="#contact" onClick={() => setMenuOpen(false)}>
+                        Contact
+                      </a>
+                      <a
+                        href="mailto:josh@themindfulpug.com"
+                        onClick={() => setMenuOpen(false)}
+                      >
+                        Careers
+                      </a>
                       <div className={button}>
-                        <a href="/balance" style={{ color: '#fff', marginBottom: 0 }} onClick={() => setMenuOpen(false)}>
+                        <a
+                          href="/balance"
+                          style={{ color: '#fff', marginBottom: 0 }}
+                          onClick={() => setMenuOpen(false)}
+                        >
                           Products
                         </a>
                       </div>
@@ -370,28 +385,10 @@ const TheMindfulPug = ({ isMobile }: Props) => {
               </p>
             )}
             <p className={aboutText}>
-              The Mindful Pug is a company that provides tools which facilitate
-              the recovery of those with addictions and mental health disorders.
-              There are more than 46 million people in the United States alone
-              who suffer from mental illness or addictions as of 2016, and of
-              those 46 million only a fraction receive treatment. Although
-              mental health is becoming more widely accepted as a subject of
-              conversation, it is still hard for those who suffer to find the
-              help they need. With the tools provided by our company clinicians
-              can be more connected to their clients and clients will have
-              access to resources that will serve to combat their disorders.
+            The Mindful Pug is a company that provides tools to enhance and facilitate the recovery of those with addictions and mental health disorders. As of 2016, there were more than 46 million people in the United States who suffer from mental illness and/or addictions. Of those 46 million only a fraction receive treatment. Although mental health is becoming more widely accepted as a subject of conversation, it is still hard for those who struggle to find the help they need. With the tools provided by The Mindful Pug, clinicians can be better connected to their clients and clients will have access to resources that will help them deal with their disorder(s).
             </p>
             <p className={aboutText} style={{ marginTop: '10px' }}>
-              The Mindful Pug was founded by Josh Greenwell following his
-              initial steps in recovery for alcohol abuse. When he was first
-              seeking help for his addition he found it difficult to get the
-              help he needed and the search for peace continued for almost a
-              year. While in treatment he was compelled to create resources that
-              would help him in his recovery journey, which he, in turn, shared
-              with those who were struggling the same as him, and from that The
-              Mindful Pug was born. Since then he has pushed forward, ever in
-              service, to offer new solutions to the continually growing
-              problems in our mental health and addiction recovery communities.
+            The Mindful Pug was founded by Josh Greenwell following his initial steps in recovery for alcohol abuse. When he was first seeking help for his addiction, he found it difficult to access the help he needed; consequently, the search for peace continued for almost a year. While in treatment Josh was inspired to create resources that would help him in his recovery journey. Realizing the value of his discoveries, he shared those with others who struggled as he had. Thus, The Mindful Pug was born. Since then he has been driven to offer new solutions to the continually growing needs in our mental health and addiction recovery programs.
             </p>
           </div>
         </div>
