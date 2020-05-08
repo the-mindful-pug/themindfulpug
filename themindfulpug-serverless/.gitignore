@@ -1,0 +1,19 @@
+# package directories
+node_modules
+jspm_packages
+
+yarn.lock
+.env
+.build
+.webpack
+.eslintcache
+.env
+
+# Serverless directories
+.serverless
+
+# Migration
+scripts
+
+# mjml testing
+lib/templates/test.html

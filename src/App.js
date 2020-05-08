@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom'
 
 import TheMindfulPug from './components/themindfulpug/TheMindfulPug'
+import Admin from './components/admin/Admin'
 import Section from './components/section'
 import ContactComponent, {
   contactStyleOverride
@@ -19,6 +20,7 @@ import FeatureComponent from './components/sections/features'
 import AboutComponent from './components/sections/about'
 import HeaderComponent from './components/sections/header'
 import Footer from './components/footer'
+import PasswordResetPage from './components/PasswordResetPage'
 
 const container = css`
   display: flex;
@@ -87,6 +89,12 @@ const App = () => {
     <Router>
       <div className={container}>
         <Switch>
+          <Route exact path='/admin'>
+            <Admin />
+          </Route>
+          <Route exact path='/balance/reset'>
+            <PasswordResetPage />
+          </Route>
           <Route exact path='/support'>
             <Section
               background="#F9F9F9"

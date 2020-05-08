@@ -20,7 +20,7 @@
     "typescript": "^3.8.3"
   },
   "scripts": {
-    "start:dev": "react-scripts start",
+    "start:dev": "PORT=3002 react-scripts start",
     "start": "serve -s build",
     "build": "react-scripts build",
     "format": "prettier --write src/**/*.ts src/**/*.tsx src/**/*.js src/**/*.jsx",

@@ -20,6 +20,6 @@
     "jsx": "react"
   },
   "include": [
-    "src", "jspdf.d.ts"
+    "src", "jspdf.d.ts", "balance-provider-2"
   ]
 }

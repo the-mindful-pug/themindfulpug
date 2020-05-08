@@ -1,0 +1,3 @@
+describe('Surveys tests', () => {
+  test('', () => {})
+})

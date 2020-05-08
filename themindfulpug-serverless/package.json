@@ -1,0 +1,57 @@
+{
+  "name": "balance-serverless",
+  "version": "1.0.0",
+  "scripts": {
+    "start:local": "serverless offline start",
+    "reset": "rm -rf ./node_modules/ && rm -rf ./.build && yarn",
+    "lint": "eslint . --cache",
+    "format": "prettier --write --ignore-path .gitignore \"**/*.{css,html,js,json,md,yaml,yml}\"",
+    "test:dev": "jest --watch",
+    "test": "jest",
+    "test:prod": "SERVICE_URL=https://v739v12cfj.execute-api.us-east-1.amazonaws.com/prod jest",
+    "test:serverless": "serverless-bundle test",
+    "deploy": "yarn lint && yarn format && yarn test && sls deploy -s prod",
+    "deploy:dev": "sls deploy -s dev"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "@babel/preset-typescript": "^7.8.3",
+    "@serverless/eslint-config": "^1.2.1",
+    "@types/jest": "^25.1.2",
+    "babel-jest": "^25.1.0",
+    "eslint": "^6.8.0",
+    "eslint-plugin-import": "^2.20.1",
+    "git-list-updated": "^1.2.1",
+    "jest": "^25.1.0",
+    "prettier": "^1.19.1",
+    "serverless-bundle": "^1.2.5",
+    "serverless-dotenv-plugin": "^2.1.1",
+    "serverless-dynamodb-local": "^0.2.38",
+    "serverless-offline": "^6.1.4",
+    "serverless-plugin-typescript": "^1.1.9",
+    "typescript": "^3.7.4"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.603.0",
+    "chalk": "^3.0.0",
+    "expo-server-sdk": "^3.4.0",
+    "js-base64": "^2.5.2",
+    "mjml": "^4.5.1",
+    "node-fetch": "^2.6.0",
+    "nodemailer": "^6.4.2",
+    "start-server-and-test": "^1.10.8",
+    "stripe": "^8.44.0",
+    "uuidv4": "^6.0.1"
+  },
+  "eslintConfig": {
+    "extends": "@serverless/eslint-config/node",
+    "root": true
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "<rootDir>/node_modules/",
+      "test-utils.js"
+    ]
+  }
+}
