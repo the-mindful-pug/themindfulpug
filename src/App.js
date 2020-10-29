@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { css } from 'emotion'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route
-} from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 import TheMindfulPug from './components/themindfulpug/TheMindfulPug'
 import Section from './components/section'
@@ -56,7 +52,8 @@ const content = {
   },
   providers: {
     title: 'Balance for Providers',
-    subTitle: 'If you are a provider such as a therapist or addiction counselor please contact us.'
+    subTitle:
+      'If you are a provider such as a therapist or addiction counselor please contact us.'
   },
   contact: {
     title: 'Interested In Learning More?',
@@ -68,7 +65,16 @@ const content = {
 }
 
 const App = () => {
-  const { header, about, features, future, action, providers, contact, footer } = content
+  const {
+    header,
+    about,
+    features,
+    future,
+    action,
+    providers,
+    contact,
+    footer
+  } = content
 
   // https://stackoverflow.com/questions/11381673/detecting-a-mobile-browser
   const mobilecheck = () => {
@@ -93,7 +99,7 @@ const App = () => {
     <Router>
       <div className={container}>
         <Switch>
-          <Route exact path='/support'>
+          <Route exact path="/support">
             <Section
               background="#F9F9F9"
               content={{
@@ -107,19 +113,24 @@ const App = () => {
               <Footer content={footer} />
             </div>
           </Route>
-          <Route exact path='/privacy'>
-            <Section content={{
-              title: 'Privacy Policy',
-              subTitle: 'Balance and any involved parties will not share any data received or collect any data irrelevant to the app, Balance.'
-            }} />
+          <Route exact path="/privacy">
+            <Section
+              content={{
+                title: 'Privacy Policy',
+                subTitle:
+                  'Balance and any involved parties will not share any data received or collect any data irrelevant to the app, Balance.'
+              }}
+            />
             <div style={{ width: '100%', position: 'absolute', bottom: 0 }}>
               <Footer content={footer} />
             </div>
           </Route>
-          <Route exact path='/balance'>
+          <Route exact path="/balance">
             <Section
               background="linear-gradient(180deg, rgba(255, 255, 255, 0.4) 0%, rgba(193, 249, 241, 0.4) 70.7%, rgba(171, 248, 236, 0.4) 100%)"
-              override={<HeaderComponent content={header} isMobile={isMobile} />}
+              override={
+                <HeaderComponent content={header} isMobile={isMobile} />
+              }
             />
             <Section content={about} component={<AboutComponent />} />
             <Section
@@ -127,18 +138,33 @@ const App = () => {
               component={<FeatureComponent isMobile={isMobile} />}
               content={features}
             />
-            <Section content={future} component={<FeatureComponent isMobile={isMobile} inverse={true} />} />
+            <Section
+              content={future}
+              component={
+                <FeatureComponent isMobile={isMobile} inverse={true} />
+              }
+            />
             <Section
               background="#00B49C"
               override={<ActionComponent content={action} />}
               styleOverride={actionStyleOverride}
             />
-            <Section content={providers} component={!isMobile ? (
-            <div style={{ display: 'flex', justifyContent: 'center', margin: '25px 0' }}>
-              <img style={{ width: '80%' }} src={bpImage} alt='' />
-            </div>
-            ) : null
-            } />
+            <Section
+              content={providers}
+              component={
+                !isMobile ? (
+                  <div
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'center',
+                      margin: '25px 0'
+                    }}
+                  >
+                    <img style={{ width: '80%' }} src={bpImage} alt="" />
+                  </div>
+                ) : null
+              }
+            />
             <Section
               background="#F9F9F9"
               content={contact}
@@ -147,7 +173,7 @@ const App = () => {
             />
             <Footer content={footer} />
           </Route>
-          <Route exact path='/'>
+          <Route exact path="/">
             <TheMindfulPug isMobile={isMobile} />
           </Route>
         </Switch>
