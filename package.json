@@ -2,7 +2,7 @@
   "name": "themindfulpug",
   "version": "1.0.0",
   "engines": {
-    "node": "12.x"
+    "node": "14.x"
   },
   "dependencies": {
     "@material-ui/core": "^4.7.1",

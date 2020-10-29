@@ -20,6 +20,8 @@ import AboutComponent from './components/sections/about'
 import HeaderComponent from './components/sections/header'
 import Footer from './components/footer'
 
+import bpImage from './images/balanceprovider.png'
+
 const container = css`
   display: flex;
   flex-direction: column;
@@ -52,6 +54,10 @@ const content = {
     subTitle:
       'Download the Balance app and start your mental health and recovery journey today.'
   },
+  providers: {
+    title: 'Balance for Providers',
+    subTitle: 'If you are a provider such as a therapist or addiction counselor please contact us.'
+  },
   contact: {
     title: 'Interested In Learning More?',
     subTitle: 'Get in touch, we’d love to hear from you!'
@@ -62,7 +68,7 @@ const content = {
 }
 
 const App = () => {
-  const { header, about, features, future, action, contact, footer } = content
+  const { header, about, features, future, action, providers, contact, footer } = content
 
   // https://stackoverflow.com/questions/11381673/detecting-a-mobile-browser
   const mobilecheck = () => {
@@ -121,12 +127,18 @@ const App = () => {
               component={<FeatureComponent isMobile={isMobile} />}
               content={features}
             />
-            <Section content={future} component={<FutureComponent />} />
+            <Section content={future} component={<FeatureComponent isMobile={isMobile} inverse={true} />} />
             <Section
               background="#00B49C"
               override={<ActionComponent content={action} />}
               styleOverride={actionStyleOverride}
             />
+            <Section content={providers} component={!isMobile ? (
+            <div style={{ display: 'flex', justifyContent: 'center', margin: '25px 0' }}>
+              <img style={{ width: '80%' }} src={bpImage} alt='' />
+            </div>
+            ) : null
+            } />
             <Section
               background="#F9F9F9"
               content={contact}

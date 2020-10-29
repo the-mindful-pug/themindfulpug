@@ -19,6 +19,15 @@ const deviceContainerStyle = css`
     margin-right: 5rem;
   }
 `
+const inverseDeviceContainerStyle = css`
+  display: flex;
+  justify-content: flex-start;
+
+  @media (min-width: 600px) {
+    width: 100%;
+    margin-left: 5rem;
+  }
+`
 const deviceStyle = css`
   @media (min-width: 600px) {
     max-width: 400px;
@@ -29,6 +38,14 @@ const textStyle = css`
     width: 100%;
     margin-left: 5rem;
     margin-top: 4rem;
+  }
+`
+const inverseTextStyle = css`
+  @media (min-width: 600px) {
+    width: 100%;
+    margin-right: 5rem;
+    margin-top: 4rem;
+    justify-content: flex-end;
   }
 `
 const featureStyle = css`
@@ -48,8 +65,24 @@ const titleStyle = css`
 `
 const ftTextStyle = css``
 
-const FeatureComponent = ({ isMobile }) => {
-  const features = [
+const FeatureComponent = ({ isMobile, inverse = false }) => {
+  const features = inverse ? [
+    {
+      title: 'View Balance Categories',
+      text:
+        'Balance offers insight into 11 main categories of day to day life with tips and descriptions to keep you living your best life.'
+    },
+    {
+      title: 'Track Your Thoughts',
+      text:
+        'Journaling is an awesome way to track thoughts in the moment and reflect on them later. It also helps you vent your stress in a safe and intimate way.'
+    },
+    {
+      title: 'Opt In to Spirit Cards',
+      text:
+        'Spirit Cards are a fun and interesting way of daily self reflection. They can also offer daily actions, like "be creative" or "set healthy boundries".'
+    }
+  ] : [
     {
       title: 'View Balance Categories',
       text:
@@ -74,18 +107,21 @@ const FeatureComponent = ({ isMobile }) => {
     </div>
   )
 
+  const imgComponent = !isMobile ? (
+    <div className={inverse ? inverseDeviceContainerStyle : deviceContainerStyle}>
+      <img src={featureImg} className={deviceStyle} alt='' style={inverse ? { transform: 'scaleX(-1)' } : {}} />
+    </div>
+  ) : (
+    <div />
+  )
+
   return (
     <div className={contentContainerStyle}>
-      {!isMobile ? (
-        <div className={deviceContainerStyle}>
-          <img src={featureImg} className={deviceStyle} alt='Balance Example' />
-        </div>
-      ) : (
-        <div />
-      )}
-      <div className={textStyle}>
+      {!inverse && imgComponent}
+      <div className={inverse ? inverseTextStyle : textStyle}>
         {features.map((el, i) => getFeature(el, i))}
       </div>
+      {inverse && imgComponent}
     </div>
   )
 }
