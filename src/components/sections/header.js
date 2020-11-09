@@ -122,7 +122,7 @@ const HeaderComponent = ({ content, isMobile }) => {
   return (
     <div className={containerStyle}>
       <div className={logoContainerStyle}>
-        <img src={logoImg} className={logoStyle} alt='Balance' />
+        <img src={logoImg} className={logoStyle} alt="Balance" />
         <span className={appTextStyle}>Balance</span>
       </div>
       <div className={contentContainerStyle}>
@@ -137,7 +137,7 @@ const HeaderComponent = ({ content, isMobile }) => {
                 (window.location =
                   'https://play.google.com/store/apps/details?id=com.themindfulpug.balance')
               }
-              alt='Google Play Store'
+              alt="Google Play Store"
             />
             <img
               src={appleStoreImg}
@@ -146,13 +146,17 @@ const HeaderComponent = ({ content, isMobile }) => {
                 (window.location =
                   'https://apps.apple.com/us/app/balance-recovery/id1488287650?ls=1')
               }
-              alt='Apple App Store'
+              alt="Apple App Store"
             />
           </div>
         </div>
         {!isMobile ? (
           <div className={deviceContainerStyle}>
-            <img src={deviceImg} className={deviceStyle} alt='Balance Example' />
+            <img
+              src={deviceImg}
+              className={deviceStyle}
+              alt="Balance Example"
+            />
           </div>
         ) : (
           <div style={{ marginBottom: '2rem' }} />

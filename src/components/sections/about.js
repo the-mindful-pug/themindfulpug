@@ -40,7 +40,7 @@ const AboutComponent = () => {
     section2: {
       header: 'Therapy',
       text:
-        'Balance teaches ideas and tools one would learn in therapy to help cope with life'
+        'Balance has the ability to connect with clinicians which allows them to view journal entries and more.'
     },
     section3: {
       header: 'Mindfulness',

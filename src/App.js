@@ -1,14 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { css } from 'emotion'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route
-} from 'react-router-dom'
-import Cookies from 'js-cookie'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
+import TheMindfulPug from './components/themindfulpug/TheMindfulPug'
 import Section from './components/section'
-import Donation from './components/donation'
 import ContactComponent, {
   contactStyleOverride
 } from './components/sections/contact'
@@ -20,6 +15,8 @@ import FeatureComponent from './components/sections/features'
 import AboutComponent from './components/sections/about'
 import HeaderComponent from './components/sections/header'
 import Footer from './components/footer'
+
+import bpImage from './images/balanceprovider.png'
 
 const container = css`
   display: flex;
@@ -53,6 +50,11 @@ const content = {
     subTitle:
       'Download the Balance app and start your mental health and recovery journey today.'
   },
+  providers: {
+    title: 'Balance for Providers',
+    subTitle:
+      'If you are a provider such as a therapist or addiction counselor please contact us.'
+  },
   contact: {
     title: 'Interested In Learning More?',
     subTitle: 'Get in touch, we’d love to hear from you!'
@@ -63,7 +65,16 @@ const content = {
 }
 
 const App = () => {
-  const { header, about, features, future, action, contact, footer } = content
+  const {
+    header,
+    about,
+    features,
+    future,
+    action,
+    providers,
+    contact,
+    footer
+  } = content
 
   // https://stackoverflow.com/questions/11381673/detecting-a-mobile-browser
   const mobilecheck = () => {
@@ -84,69 +95,86 @@ const App = () => {
   }
   const isMobile = mobilecheck()
 
-  const [showDonation, setShowDonation] = useState(true)
-  const closeDonation = () => {
-    Cookies.set('donation-suppression', 'true', { expires: 7 })
-    setShowDonation(false)
-  }
-
-  useEffect(() => {
-    const shouldShow = !Cookies.get('donation-suppression')
-    setShowDonation(shouldShow)
-  }, [])
-
   return (
     <Router>
       <div className={container}>
         <Switch>
-          <Route path='/support'>
-              <Section
-                background="#F9F9F9"
-                content={{
-                  title: 'Need help?',
-                  subTitle: 'If you have any questions please contact us.'
-                }}
-                component={<ContactComponent />}
-                styleOverride={contactStyleOverride}
-              />
-              <div style={{ width: '100%', position: 'absolute', bottom: 0 }}>
-                <Footer content={footer} />
-              </div>
-          </Route>
-          <Route exact path='/privacy'>
-            <Section content={{
-              title: 'Privacy Policy',
-              subTitle: 'Balance and any involved parties will not share any data received or collect any data irrelevant to the app, Balance.'
-            }} />
+          <Route exact path="/support">
+            <Section
+              background="#F9F9F9"
+              content={{
+                title: 'Need help?',
+                subTitle: 'If you have any questions please contact us.'
+              }}
+              component={<ContactComponent />}
+              styleOverride={contactStyleOverride}
+            />
             <div style={{ width: '100%', position: 'absolute', bottom: 0 }}>
               <Footer content={footer} />
             </div>
           </Route>
-          <Route exact path='/'>
-              {showDonation && <Donation closeDonation={closeDonation} />}
-              <Section
-                background="linear-gradient(180deg, rgba(255, 255, 255, 0.4) 0%, rgba(193, 249, 241, 0.4) 70.7%, rgba(171, 248, 236, 0.4) 100%)"
-                override={<HeaderComponent content={header} isMobile={isMobile} />}
-              />
-              <Section content={about} component={<AboutComponent />} />
-              <Section
-                background="#F9F9F9"
-                component={<FeatureComponent isMobile={isMobile} />}
-                content={features}
-              />
-              <Section content={future} component={<FutureComponent />} />
-              <Section
-                background="#00B49C"
-                override={<ActionComponent content={action} />}
-                styleOverride={actionStyleOverride}
-              />
-              <Section
-                background="#F9F9F9"
-                content={contact}
-                component={<ContactComponent />}
-                styleOverride={contactStyleOverride}
-              />
+          <Route exact path="/privacy">
+            <Section
+              content={{
+                title: 'Privacy Policy',
+                subTitle:
+                  'Balance and any involved parties will not share any data received or collect any data irrelevant to the app, Balance.'
+              }}
+            />
+            <div style={{ width: '100%', position: 'absolute', bottom: 0 }}>
               <Footer content={footer} />
+            </div>
+          </Route>
+          <Route exact path="/balance">
+            <Section
+              background="linear-gradient(180deg, rgba(255, 255, 255, 0.4) 0%, rgba(193, 249, 241, 0.4) 70.7%, rgba(171, 248, 236, 0.4) 100%)"
+              override={
+                <HeaderComponent content={header} isMobile={isMobile} />
+              }
+            />
+            <Section content={about} component={<AboutComponent />} />
+            <Section
+              background="#F9F9F9"
+              component={<FeatureComponent isMobile={isMobile} />}
+              content={features}
+            />
+            <Section
+              content={future}
+              component={
+                <FeatureComponent isMobile={isMobile} inverse={true} />
+              }
+            />
+            <Section
+              background="#00B49C"
+              override={<ActionComponent content={action} />}
+              styleOverride={actionStyleOverride}
+            />
+            <Section
+              content={providers}
+              component={
+                !isMobile ? (
+                  <div
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'center',
+                      margin: '25px 0'
+                    }}
+                  >
+                    <img style={{ width: '80%' }} src={bpImage} alt="" />
+                  </div>
+                ) : null
+              }
+            />
+            <Section
+              background="#F9F9F9"
+              content={contact}
+              component={<ContactComponent />}
+              styleOverride={contactStyleOverride}
+            />
+            <Footer content={footer} />
+          </Route>
+          <Route exact path="/">
+            <TheMindfulPug isMobile={isMobile} />
           </Route>
         </Switch>
       </div>

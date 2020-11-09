@@ -97,7 +97,7 @@ const ActionComponent = ({ content }) => {
                 (window.location =
                   'https://play.google.com/store/apps/details?id=com.themindfulpug.balance')
               }
-              alt='Google Play Store'
+              alt="Google Play Store"
             />
             <img
               src={appleStoreImg}
@@ -106,7 +106,7 @@ const ActionComponent = ({ content }) => {
                 (window.location =
                   'https://apps.apple.com/us/app/balance-recovery/id1488287650?ls=1')
               }
-              alt='Apple App Store'
+              alt="Apple App Store"
             />
           </div>
         </div>
